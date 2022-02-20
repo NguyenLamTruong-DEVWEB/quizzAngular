@@ -1,0 +1,45 @@
+
+                   <div class="conatainer col-12"  ng-controller="myctrl">
+                        <form name="myform" class="ml-5 p-3 animate__animated animate__backInRight ">
+                          <h3 class="text-center">ĐĂNG KÝ</h3>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">TÊN ĐĂNG NHẬP : </label>
+                            <input type="text" name="tenuser" ng-pattern="/^[a-zA-Z0-9-]*$/"   required ng-minlength="5" ng-maxlength="20" ng-model="student.username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <span id="erroUser" ng-show="myform.tenuser.$invalid" style="color:red">Nhập tên từ 5 đến 20</span>
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">HỌ VÀ TÊN : </label>
+                            <input type="text" name="namelient" required ng-model="student.fullname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <span id="erroName" ng-show="myform.namelient.$invalid" style="color:red">Nhập tên vào !</span>
+                          </div>
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">EMAIL : </label>
+                              <input type="email" required name="emailfill" ng-model="student.email" ng-model="student.username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <span id="erroEmail" ng-show="myform.emailfill.$invalid" style="color:red">Nhập đúng email !</span>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">NGÀY SINH : </label>
+                              <input type="text" name="date" ng-model="student.birthday" required ng-pattern="/^[0-9]/g" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <span id="erroDate" style="color:red" ng-show = "myform.date.$invalid">Ngày sinh !</span>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">HỌC PHÍ : </label>
+                              <input type="number" name="sotien" ng-model="student.schoolfee" required ng-pattern="/^[0-9]/g" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <span id="erroDate" style="color:red" ng-show = "myform.sotien.$invalid">Nhập số tiền !</span>
+                            </div>
+                            <div class="form-group">
+                              <label for="exampleInputEmail1">ĐIỂM : </label>
+                              <input type="text" name="mark" required ng-pattern="/^[0-9]/g" ng-minlength="1" ng-maxlength="10" ng-model="student.mark" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <span id="erroDate" ng-show = "myform.mark.$invalid" style="color:red">Chỉ nhập số !</span>
+                            </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">MẬT KHẨU : </label>
+                            <input type="password" name="password" required min-length="5" max-length="15"  ng-model="student.password" class="form-control" id="exampleInputPassword1">
+                            <span id="erroPass" style="color:red" ng-show = "myform.password.$invalid">Không được bỏ trống !</span>
+                          </div>
+                          <button type="submit" class="btn btn-primary" ng-click="dangky()">ĐĂNG Ký</button>
+                        </form>
+                     
+                    </div>
+                   </div>
+               

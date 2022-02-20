@@ -1,0 +1,21 @@
+
+                   <div class="conatainer col-10" ng-controller="myctrl">
+                     <h1 ng-if="full" class="text-center">Xin chào ! {{full}}</h1>
+                    <form class="ml-5 p-3 animate__animated animate__backInRight" name="flogin">
+                        <h3 class="text-center">ĐĂNG NHẬP</h3>
+                        
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">TÊN ĐĂNG NHẬP : </label>
+                          <input type="text" name="user" ng-model="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                          <div ng-show="flogin.user.$invalid"  style="color:red;margin-top: 20px;">Không được bỏ trống</div>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">MẬT KHẨU : </label>
+                          <input type="password" name="matkhau" ng-model="password" required class="form-control" id="exampleInputPassword1">
+                          <span id="erroPass" ng-show="flogin.matkhau.$invalid" style="color:red;margin-top: 20px;">Không được bỏ trống</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary" ng-click="login()">ĐĂNG NHẬP</button>
+                        <button type="submit" class="btn btn-warning" ng-click="logout()" ng-show="core==1">ĐĂNG XUẤT</button>
+                      </form>
+                   </div>
+               

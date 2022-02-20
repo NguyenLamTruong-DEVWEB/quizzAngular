@@ -1,0 +1,178 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+header{
+    width: 100%;
+    height: 200px;
+    background-image: url('https://logodownload.org/wp-content/uploads/2019/07/udemy-logo-0.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100vh;
+}
+
+.section{
+    width: 95%;
+    min-height: 300px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.shadow-list{
+    box-shadow: 3px 4px 5px black;
+}
+.bg-c {
+    background-color: rgb(120, 59, 170) !important;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: white !important;
+}
+footer{
+    width: 100%;
+    height:50px;
+    background-color: saddlebrown;
+    margin-top: 10px;
+}
+.demo1{
+    height: 500px;
+    background-color: aqua;
+}
+.demo2{
+    height: 500px;
+    background-color: black;
+}
+.grid-template{
+    display: grid;
+    grid-template-columns: 24% 24% 24% 24%;
+}
+.box{
+    height: 200px;
+    background-color: blanchedalmond;
+}
+.mrr{
+    margin-right: 20px !important;
+}
+.col-9{
+    min-height: 800px;
+}
+form {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+input[type="button"]{
+    background-color: black;
+    color:white;
+}
+.mt {
+    margin-top: 60px;
+}
+.table thead th {
+    vertical-align: middle !important;
+    border-bottom: 2px
+    solid #dee2e6;
+}
+input[type="text"] > ::placeholder{
+   font-size: 13pt;
+}
+.mrtop{
+    margin-top: 60px;
+}
+.demo1{
+    min-height: 300px;
+    border: 1px solid greenyellow;
+    margin-right: 10px;
+}
+.demo2{
+    min-height: 300px;
+}
+.bg-cardheader{
+    background-color: mediumturquoise !important;
+    color: white;
+}
+.icon{
+    color: mediumturquoise;
+}
+.col-5{
+    width: 300px !important;
+}
+
+/*  */
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #eee;
+}
+
+a:hover,
+a:focus {
+    text-decoration:none;
+}
+
+.fa {
+    color: #FFF;
+}
+
+.box-top {
+    padding: 0px 0px;
+    background: #dedede;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.box-top > img {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.box-top.instagram {
+    background: linear-gradient(45deg, #f2935b, #6f49c0);
+}
+
+.box-top.twitter {
+    background: linear-gradient(45deg, #cae1f3, #55aded);
+}
+
+.box-top.facebook {
+    background: linear-gradient(45deg, #95a2c1, #3b579d);
+}
+
+.box-bottom {
+    background: #FFF;
+    padding: 0px 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.box-bottom .box-text {
+    padding: 10px 0px; 
+}
+
+.box-bottom .instagram-title {
+    font-size: 20px;  
+    font-weight: 600;
+    background: linear-gradient(45deg, #f2935b, #6f49c0);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+}
+
+.box-bottom .twitter-title {
+    font-size: 20px;  
+    font-weight: 600;
+    background: linear-gradient(45deg, #cae1f3, #12193f);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+}
+
+.box-bottom .facebook-title {
+    font-size: 20px; 
+    font-weight: 600;
+    color: #428bca;
+}
+ .box-column {
+     border: 1px solid rgb(52, 105, 204);
+     border-radius: 10px;
+     margin-top: 10px !important;
+ }
+ .bill{
+     background-color: aqua;
+     height: 500px;
+ }

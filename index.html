@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home-test</title>
+    <!-- link css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <!-- link bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+     <!-- link angular -->
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<!-- libra -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body ng-app = "myApp">
+    <header>
+        
+    </header>
+  <div ng-include="'libra/nav.html'">
+  </div>    
+
+    <div class="section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-3">
+                   <div ng-include="'libra/nav-left.html'"></div>
+                </div>
+                <div class="col-9" ng-controller="myctrl">
+                  <div ng-view>
+                    
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p class="text-center" style="color: white;">MÃ SINH VIÊN : PS13240 - NGUYỄN LAM TRƯỜNG</p>
+    </footer>
+</body>
+</html>
+<script src="db/Students.js"></script>
+<script>
+    var app = angular.module("myApp",["ngRoute"]);
+    app.config(function($routeProvider){
+      $routeProvider
+      .when("/home", { templateUrl  : 'home.html',controller:"loadhome" })
+      .when("/gioithieu", {templateUrl : 'gioithieu.html'})
+      .when("/dangnhap", {templateUrl : 'login.html'})
+      .when("/quenpass", {templateUrl : 'quenmatkhau.html'})
+      .when("/dangky", {templateUrl : 'dangky.html'})
+      .when("/lienhe", {templateUrl : 'lienhe.html'})
+      .when("/opy", {templateUrl : 'opy.html'})
+      .when("/quiz/:idMH/:tenMH",{templateUrl:"Quiz.html",controller:"tnQuiz"})
+      .when("/reset",{templateUrl:"doipass.html"})
+      .when("/info",{templateUrl:"resetinfo.html"})
+      .otherwise({redirectTo:"home.html"})
+    });
+
+    app.controller("list_sub",function($scope,$http){
+        $scope.cacmonhoc = [];
+        $http.get('db/Subjects.js').then(function(d){$scope.cacmonhoc = d.data;});
+    })
+
+    app.controller("tnQuiz",function($scope,$http,$routeParams){
+        $scope.caccauhoi = [];
+        $scope.idMH = $routeParams.idMH;
+        $scope.tenMH = $routeParams.tenMH;
+        $http.get('db/Quizs/' + $scope.idMH + ".js").then(
+            function(d) {$scope.caccauhoi = d.data;},
+            function(d) {alert("Xuất hiện lỗi !");}
+        );
+        $scope.page =1;
+        $scope.start = 0;
+        $scope.tongdiem = 0;
+        $scope.diem = function(answer, AnswerId){
+            if(AnswerId == answer) {
+                $scope.tongdiem+=1;
+            }
+        }
+        $scope.next = function(){
+            if($scope.start < $scope.caccauhoi.length - $scope.page)
+               $scope.start += $scope.page;
+        }
+        $scope.back = function(){
+            if($scope.start > 0)
+              $scope.start -= $scope.page;
+        }
+    });
+
+    // load trang chủ
+    app.controller("loadhome",function($scope,$http){
+        $scope.khoahoc = [];
+        $scope.pageSize=6;
+        $scope.start = 0;
+        $http.get('db/Subjects.js').then(function(d){$scope.khoahoc = d.data;});
+        // khai báo 2 biến next và prev
+        $scope.ketiep = function(){
+            if($scope.start < $scope.khoahoc.length - $scope.pageSize)
+                $scope.start += $scope.pageSize;
+        }
+        $scope.lui = function(){
+            if($scope.start > 0)
+              $scope.start -= $scope.pageSize;  
+        }
+        $scope.trangdau = function(){
+            $scope.start = 0 ;
+        }
+        $scope.trangcuoi = function(){
+            sotrang = Math.ceil($scope.khoahoc.length / $scope.pageSize);
+            $scope.start = (sotrang - 1 ) * $scope.pageSize;
+        }
+    })
+    app.controller("myctrl",function($scope,$rootScope){
+        // khai báo 2 biến nhận giá trị dữ liệu
+        var sinhvien ;
+        var tim =false;
+        $scope.lient = listsv;
+        $scope.login = function(){
+             var user = $scope.username;
+             var pass = $scope.password;
+            for(var i = 0 ;i < listsv.length; i++){
+                sinhvien = listsv[i];
+                if(user == sinhvien.username && pass == sinhvien.password){
+                   tim = true;
+                   break;
+                }
+            };
+            if(tim){
+                sessionStorage.setItem("name",sinhvien.fullname);
+                sessionStorage.setItem("ngaysinh",sinhvien.birthday);
+                sessionStorage.setItem("diem",sinhvien.marks);
+                sessionStorage.setItem("email",sinhvien.email);
+                alert("Đăng nhập thành công !");
+                $scope.core = 1;
+                $scope.full = sessionStorage.getItem("name",sinhvien.fullname);
+            }
+            else{
+                alert("Bạn đã đăng nhập sai !");
+            }
+        };
+        $scope.dangky = () =>{
+            $scope.lient.push($scope.student);
+            console.log($scope.lient);
+            alert("Đăng ký thành công !");
+        }
+        $scope.luumatkhau = () => {
+            var oldpass = $scope.oldpass;
+            for(var i = 0 ; i < listsv.length ; i++){
+                sinhvien = listsv[i];
+                if(oldpass == sinhvien.password){
+                    tim=true;
+                    console.log(oldpass);
+                    $scope.show = 1;
+                    $scope.student = sinhvien[i];
+                    break;
+                }
+            }
+        }
+        $scope.logout = () => {
+            confirm("Bạn thực sự muốn đăng xuất !");
+            sessionStorage.removeItem("name",sinhvien.fullname);
+            sessionStorage.removeItem("diem",sinhvien.marks);
+            sessionStorage.removeItem("ngaysinh",sinhvien.birthday);
+            sessionStorage.removeItem("email",sinhvien.email);
+            document.location = "index.html#!dangnhap";
+        }
+        $scope.doimatkhau =() => {
+            var oldpass = $scope.oldpass;
+            for(var i = 0 ; i < listsv.length ; i++){
+                $scope.students = listsv[i];
+                if(oldpass == sinhvien.password){
+                    tim=true;
+                    console.log($scope.matkhaumoi);
+                    $scope.students.password = angular.copy($scope.matkhaumoi);
+                    swal("Thành công","Vâng , mật khẩu của bạn đã được đổi","success");
+                    console.log($scope.students);
+                    break;
+                }
+            }
+        };
+        $scope.timmatkhau = () => {
+            $scope.sinhvien;
+            $scope.sinhvientimduoc;
+            // biến tim là biến gắn cờ "flag"
+            var tim =false;
+            // -----------------
+            var email = $scope.email;
+            var user = $scope.user;
+            for(var i = 0 ; i<listsv.length;i++){
+               $scope.sinhvien = listsv[i];
+               if(email==$scope.sinhvien.email && user==$scope.sinhvien.username){
+                   tim = true;
+                   $scope.sinhvientimduoc = $scope.sinhvien;
+                   if(tim){
+                        $scope.core=1;
+                        console.log($scope.sinhvientimduoc);
+                    }
+            };
+               }
+               
+        }
+    });
+    app.controller("info",function($scope,$rootScope){
+      var name = $scope.name = sessionStorage.getItem("name");
+      var diem = $scope.marks = sessionStorage.getItem("diem");
+      var ngaysinh = $scope.birthday = sessionStorage.getItem("ngaysinh");
+      var tim = false;
+      $scope.show=0;
+      $scope.show = () => {
+        //    biến scope xác định lại nên show hay không
+          $scope.show=1;
+      };
+      $scope.loseshow = () => {
+        //    biến scope xác định lại nên show hay không
+          $scope.show=0;
+      };
+    //    khai báo biến chứa mảng
+     $scope.sinhvien;
+     for(var i = 0 ; i < listsv.length ; i++){
+         $scope.sinhvien = listsv[i];
+         if(name == $scope.sinhvien.fullname){
+             tim=true;
+             break;
+         }
+     };
+     $scope.edit = function () {
+             $scope.student = $scope.sinhvien;
+             $scope.core =1 ;
+    //  -----
+     };
+     $scope.capnhat = function() {
+        $scope.students = $scope.sinhvien;
+        console.table($scope.student);
+        $scope.students = angular.copy($scope.student);
+        console.log($scope.students);
+     };
+    });
+    
+</script>

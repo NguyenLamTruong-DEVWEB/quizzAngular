@@ -1,0 +1,4 @@
+<ul class="list-group shadow-list" ng-controller="list_sub">
+    <li class="list-group-item active"><i class="bi bi-list-columns-reverse"></i> KHÓA HỌC</li>
+    <li class="list-group-item" ng-repeat="mh in cacmonhoc"><a href="#!quiz/{{mh.Id}}/{{mh.Name}}">{{mh.Name}}</a></li>
+</ul>

@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-c" >
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#!home">UDEMY<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#!gioithieu">GIỚI THIỆU</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#!lienhe">LIÊN HỆ</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#!opy">GÓP Ý</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            TÀI KHOẢN
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#!dangnhap">ĐĂNG NHẬP</a>
+            <a class="dropdown-item" href="#!dangky">ĐĂNG KÝ</a>
+            <a class="dropdown-item" href="#!quenpass">QUÊN MẬT KHẨU</a>
+            <a class="dropdown-item" href="#!reset">ĐỔI MẬT KHẨU</a>
+            <a class="dropdown-item" href="#!info">SỬA THÔNG TIN</a>
+            <a class="dropdown-item" href="#">ĐĂNG XUẤT</a>
+          </div>
+        </li>
+        <li class="nav-item" ng-controller="myctrl">
+          <a class="nav-link float-end" href="" ng-if="full">Xin chào ! {{full}}</a>
+        </li>
+      </ul>
+    </div>
+  </nav>

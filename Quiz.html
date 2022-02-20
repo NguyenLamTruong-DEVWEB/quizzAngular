@@ -1,0 +1,24 @@
+              
+              <div ng-repeat="ch in caccauhoi|limitTo:page:start" class="animate__animated animate__flipInX">
+                    <div class="card mt-2">
+                     <div class="card-header font-weight-bold">
+                        <h5> {{ch.Text}} </h5>
+                     </div>
+                     <div class="card-body" >
+                         <div class="form-check" ng-repeat="p in ch.Answers">
+                             <input class="form-check-input" name="answer" ng-model="answer"
+                             type="radio" ng-click="diem(p.Id, ch.AnswerId)"
+                             value="{{p.Id}}"> {{p.Text}}
+                         </div>
+                     </div>
+                     <div class="card-footer">
+                         Điểm: <span style="color: red;">{{tongdiem}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <input class="btn btn-primary" type="submit" value="TRỞ LẠI" ng-click = "back()">
+                <input class="btn btn-primary" type="submit" value="KẾ TIẾP" ng-click = "next()">
+            </div>
+               
